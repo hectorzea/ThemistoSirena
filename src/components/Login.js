@@ -25,7 +25,7 @@ const Login = ({user, setUser}) => {
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
-            const resp = await axios.post(`http://localhost:3001/api/user/login`, data);
+            const resp = await axios.post(`${process.env.REACT_APP_URLAPI}/api/user/login`, data);
             if (resp.data.ok) {
                 setUser({...resp.data.user, logged: true});
                 localStorage.setItem("userId", JSON.stringify(resp.data.user));
