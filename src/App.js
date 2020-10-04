@@ -1,26 +1,46 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {Fragment, useState, useEffect} from 'react';
+import Login from "./components/Login";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Container from "react-bootstrap/Container";
+import Home from "./components/Home";
+import Button from "react-bootstrap/cjs/Button";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+    const [user, setUser] = useState({
+        logged: false
+    });
+
+
+
+    useEffect(() => {
+        const loggedInUser = localStorage.getItem("userId");
+        if (loggedInUser) {
+            const foundUser = JSON.parse(loggedInUser);
+            setUser({...foundUser, logged: true});
+        }
+    }, []);
+
+
+    return (
+        <Fragment>
+            <Container className="ContainerApp" fluid>
+                <Row>
+                    <Col>
+                        <h1 className="text-center">Mephisto</h1>
+                    </Col>
+                </Row>
+                {!user.logged ?
+                    <Row className="justify-content-md-center">
+                        <Login user={user} setUser={setUser}/>
+                    </Row> :
+                    <Home user={user} setUser={setUser} />
+                }
+
+            </Container>
+        </Fragment>
+    );
 }
 
 export default App;
