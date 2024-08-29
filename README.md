@@ -5,7 +5,6 @@ Pueden entrar a esta pagina donde está alojado para que puedan ver su funcionam
 Login en THEMISTO / MEPHISTO
 
 email: zea3471@gmail.com 
-password: Alejandro112771.. (tiene dos puntos ..)
 
 ## THEMISTO
 
